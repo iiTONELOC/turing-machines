@@ -1,6 +1,6 @@
 /**
- * @typedef {import('./singleTM').SingleTapeTuringMachine} SingleTapeTuringMachine
- * @typedef {import('./singleTM').Transition} Transition
+ * @typedef {import('../singleTM').SingleTapeTuringMachine} SingleTapeTuringMachine
+ * @typedef {import('../singleTM').Transition} Transition
  */
 
 /**

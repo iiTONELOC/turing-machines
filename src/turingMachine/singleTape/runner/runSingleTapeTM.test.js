@@ -1,6 +1,6 @@
 import assert from 'node:assert';
 import {describe, it} from 'node:test';
-import {singleTapeTuringMachine} from './index.js';
+import {singleTapeTuringMachine} from '../machine/index.js';
 import {
   getTransition,
   moveTapeHead,
@@ -8,7 +8,7 @@ import {
   getCurrentSymbol,
   updateState,
   runSingleTapeTM,
-} from './runSingleTapeTM.js';
+} from './index.js';
 
 describe('get transition', () => {
   const machine = singleTapeTuringMachine({

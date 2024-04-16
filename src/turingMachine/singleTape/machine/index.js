@@ -1,5 +1,5 @@
 /**
- * @typedef {import('./singleTM').SingleTapeTuringMachine} SingleTapeTuringMachine
+ * @typedef {import('../singleTM').SingleTapeTuringMachine} SingleTapeTuringMachine
  */
 /**
  * Creates a single tape Turing Machine
