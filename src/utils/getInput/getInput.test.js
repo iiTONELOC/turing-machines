@@ -1,6 +1,6 @@
 import assert from 'node:assert';
-import {getInput, testGetInput} from './index.js';
 import {describe, it} from 'node:test';
+import {getInput, testGetInput} from './index.js';
 
 describe('getInput', () => {
   it('should be a function', () => {
