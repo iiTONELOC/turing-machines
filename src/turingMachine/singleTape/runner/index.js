@@ -91,7 +91,7 @@ export function updateState(machine, transition) {
 export function runSingleTapeTM(machine) {
   let currentMachine = { ...machine };
 
-  while (currentMachine.state !== 'reject' && currentMachine.state !== 'accept') {
+  while (currentMachine.state.toLocaleLowerCase() !== 'reject' || currentMachine.state.toLocaleLowerCase() !== 'accept') {
     // look for the current symbol in the tape, if the symbol is not found, return a blank space
     let currentSymbol = getCurrentSymbol(currentMachine);
 
@@ -103,14 +103,14 @@ export function runSingleTapeTM(machine) {
     const { write, move, nextState } = nextTransition || {};
 
     // update the state in the history
-    currentMachine.history.stateHistory.push([machine.state, currentSymbol, write, move, nextState || 'reject']);
+    currentMachine.history.stateHistory.push([currentMachine.state, currentSymbol, write, move, nextState || 'reject']);
     // update the tape in the history
     currentMachine.history.tapeHistory.push([...currentMachine.tape]);
     // update the state
     currentMachine = updateState(currentMachine, nextTransition);
 
     // break out if the nextState is undefined or null or 'reject'
-    if (!nextState || nextState === 'reject') {
+    if (!nextState || nextState === 'reject' || nextState === 'accept') {
       break;
     }
 
@@ -119,6 +119,8 @@ export function runSingleTapeTM(machine) {
 
     // move the tape head
     currentMachine = moveTapeHead(currentMachine, { move });
+
+    currentMachine.state = nextState || 'reject';
   }
 
   return currentMachine;
