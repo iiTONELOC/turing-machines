@@ -1,7 +1,7 @@
 import assert from 'node:assert';
 import {describe, it} from 'node:test';
 import {copyAndPaste } from './index.js';
-import {printHistory, runSingleTapeTM} from '../../runner/index.js';
+import { runSingleTapeTM} from '../../runner/index.js';
 import {singleTapeTuringMachine} from '../../machine/index.js';
 
 
@@ -15,13 +15,8 @@ describe('Copy and Paste', () => {
 
     const finalMachine = runSingleTapeTM(machine);
 
-    printHistory(finalMachine);
-    
-   
     assert.strictEqual(finalMachine.state, 'accept');
     assert.deepStrictEqual(finalMachine.tape, ['1', '0', '1', '1',' ','1', '0', '1', '1']);
-
-   
   });
 
     it('should run the Turing Machine until it reaches a reject state', () => {

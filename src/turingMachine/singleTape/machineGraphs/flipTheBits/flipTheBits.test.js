@@ -1,6 +1,6 @@
 import assert from 'node:assert';
 import {describe, it} from 'node:test';
-import {flipTheBitsTransitions } from './index.js';
+import {flipTheBits } from './index.js';
 import {runSingleTapeTM} from '../../runner/index.js';
 import {singleTapeTuringMachine} from '../../machine/index.js';
 
@@ -11,7 +11,7 @@ describe('Flip the Bits', () => {
 
     const machine = singleTapeTuringMachine({
       input: '1011',
-      transitions: flipTheBitsTransitions,
+      transitions: flipTheBits,
       startingState: 'q0'
     });
 
@@ -27,7 +27,7 @@ describe('Flip the Bits', () => {
       
       const machine = singleTapeTuringMachine({
         input: '10p1',
-        transitions: flipTheBitsTransitions,
+        transitions: flipTheBits,
         startingState: 'q0'
       });
 

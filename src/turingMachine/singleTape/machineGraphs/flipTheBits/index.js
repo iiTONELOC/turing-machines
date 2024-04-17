@@ -5,7 +5,7 @@
  * Γ = {0, 1, Λ}
  * L(A) = (0, 1)*
  */
-export const flipTheBitsTransitions =  {
+export const flipTheBits =  {
       q0: {
         0: {write: '1', move: 'R', nextState: 'q0'},
         1: {write: '0', move: 'R', nextState: 'q0'},

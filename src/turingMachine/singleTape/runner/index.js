@@ -10,7 +10,6 @@
  * @returns {Transition|undefined} The transition object for the current state and input symbol or undefined if no transition is found
  */
 export function getTransition(fromMachine, inputSymbol) {
-
   try {
     return fromMachine.stateTransitions[fromMachine.state][inputSymbol];
   } catch (error) {
@@ -89,9 +88,12 @@ export function updateState(machine, transition) {
  * @returns {SingleTapeTuringMachine}
  */
 export function runSingleTapeTM(machine) {
-  let currentMachine = { ...machine };
+  let currentMachine = {...machine};
 
-  while (currentMachine.state.toLocaleLowerCase() !== 'reject' || currentMachine.state.toLocaleLowerCase() !== 'accept') {
+  while (
+    currentMachine?.state?.toLocaleLowerCase() !== 'reject' ||
+    currentMachine?.state.toLocaleLowerCase() !== 'accept'
+  ) {
     // look for the current symbol in the tape, if the symbol is not found, return a blank space
     let currentSymbol = getCurrentSymbol(currentMachine);
 
@@ -100,10 +102,16 @@ export function runSingleTapeTM(machine) {
 
     // look for the transition in the stateTransitions object
     const nextTransition = getTransition(currentMachine, currentSymbol);
-    const { write, move, nextState } = nextTransition || {};
+    const {write, move, nextState} = nextTransition || {};
 
     // update the state in the history
-    currentMachine.history.stateHistory.push([currentMachine.state, currentSymbol, write, move, nextState || 'reject']);
+    currentMachine.history.stateHistory.push([
+      currentMachine.state,
+      currentSymbol,
+      write,
+      move,
+      nextState || 'reject'
+    ]);
     // update the tape in the history
     currentMachine.history.tapeHistory.push([...currentMachine.tape]);
     // update the state
@@ -115,10 +123,10 @@ export function runSingleTapeTM(machine) {
     }
 
     // write the symbol to the tape
-    currentMachine = writeSymbol(currentMachine, { write, move });
+    currentMachine = writeSymbol(currentMachine, {write, move});
 
     // move the tape head
-    currentMachine = moveTapeHead(currentMachine, { move });
+    currentMachine = moveTapeHead(currentMachine, {move});
 
     currentMachine.state = nextState || 'reject';
   }
@@ -129,11 +137,13 @@ export function runSingleTapeTM(machine) {
 export function printHistory(machine) {
   machine.history.stateHistory.forEach((state, index) => {
     const upArrow = '↑';
-   
+
     console.log(`\nState Step ${index + 1}:`);
     console.log(`  State: ${state[0]}`);
     console.log(`\tTape     : ${machine.history.tapeHistory[index]?.join('') || ''}`);
-    console.log(`\tTape Head: ${upArrow.padStart(machine.history.tapeHeadHistory[index] + 1, ' ')}`);
+    console.log(
+      `\tTape Head: ${upArrow.padStart(machine.history.tapeHeadHistory[index] + 1, ' ')}`
+    );
     console.log(`\n\tInput Symbol: ${state[1]}`);
     console.log(`\tWrite Symbol: ${state[2]}`);
     console.log(`\tMove Tape Head: ${state[3]}`);

@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "test": "node --test",
-    "test-dev": "node --test --watch"
+    "test-dev": "node --test --watch",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
