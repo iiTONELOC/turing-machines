@@ -1,5 +1,7 @@
 import process from 'process';
-import {singleTapeTM} from './src/turingMachine/singleTape/index.js';
+import {singleTapeTM} from './src/turingMachines/index.js';
+
+export * from './src/turingMachines/index.js';
 
 if (process?.argv[1]?.includes('index.js')) {
   const [, , input, graph, ...flags] = process.argv;

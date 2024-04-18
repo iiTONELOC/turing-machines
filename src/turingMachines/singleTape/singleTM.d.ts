@@ -7,7 +7,7 @@ export type Transition = {
    *
    * This must be included in Γ, the tape alphabet.
    */
-  write: any;
+  write: string;
   /**
    * The direction to move the tape head.
    *
@@ -27,7 +27,9 @@ export type Transition = {
  * Represents transitions for all input symbols in a specific state.
  */
 export type StateTransitions = {
-  [inputSymbol: string]: Transition;
+  [machineState: string]: {
+    [tapeSymbol: string]: Transition; // The transitions for the state and tape symbol.
+  };
 };
 
 /**
@@ -48,6 +50,6 @@ export type SingleTapeTuringMachine = {
   tapeHead?: number; // The position of the tape head on the tape, defaults to 0.
   startState?: string; // The initial state of the Turing Machine, defaults to 'q0'.
   tape?: string[]; // The tape of the Turing Machine, defaults to an empty array.
-  stateTransitions?: StateTransitions; // The transitions for the Turing Machine, defaults to an empty object.
+  stateTransitions: StateTransitions; // The transitions for the Turing Machine, defaults to an empty object.
   history?: MachineHistory; // The history of the Turing Machine.
 };
