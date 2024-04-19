@@ -8,7 +8,7 @@
   "homepage": "https://github.com/iitoneloc/turing-machines",
   "repository": {
     "type": "git",
-    "url": "https://github.com/iitoneloc/turing-machines.git"
+    "url": "git+https://github.com/iitoneloc/turing-machines.git"
   },
   "scripts": {
     "test-dev": "node --test --watch",
@@ -30,7 +30,7 @@
     "single tape turing machine"
   ],
   "author": "iiTONELOC - Anthony Tropeano",
-  "license": "ISC",
+  "license": "MIT",
   "description": "Dependency free library for creating and running Single-Tape Turing Machines.",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.7",

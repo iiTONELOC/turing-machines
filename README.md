@@ -531,4 +531,4 @@ If you have any questions or would like to get in touch feel free to email me @ 
 
 ## LICENSE
 
-This project is licensed by the MIT license. A copy can be viewed here: [LICENSE](./License)
+This project is licensed by the MIT license. A copy can be viewed here: [LICENSE](./License.md)
