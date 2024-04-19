@@ -3,18 +3,22 @@ import {runSingleTapeTM, printHistory} from './runner/index.js';
 import {copyAndPaste, flipTheBits} from './machineGraphs/index.js';
 
 /**
- * The single tape Turing Machine
+ * @typedef {import('./singleTM').singleTapeTM} singleTapeTM
  */
-export const singleTapeTM = {
+
+/**
+ * @type {singleTapeTM}
+ */
+export const singleTM = {
   machine: singleTapeTuringMachine,
   runner: runSingleTapeTM,
-  printHistory,
+  printHistory: printHistory,
   machineGraphs: {
-    copyAndPaste: {transitions: copyAndPaste, startState: 'A'},
-    flipTheBits: {transitions: flipTheBits, startState: 'q0'}
+    copyAndPaste: {transitions: copyAndPaste, startingState: 'A'},
+    flipTheBits: {transitions: flipTheBits, startingState: 'q0'}
   }
 };
 
 export {singleTapeTuringMachine, runSingleTapeTM, printHistory, copyAndPaste, flipTheBits};
 
-export default singleTapeTM;
+export default singleTM;

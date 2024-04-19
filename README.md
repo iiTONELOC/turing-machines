@@ -11,6 +11,8 @@ _Note._ From _Turing Machine 1_ [Drawing], by W.V. Bailey, 2006, Wikimedia Commo
   - [Table of Contents](#table-of-contents)
   - [Description](#description)
   - [Installation](#installation)
+    - [Via GitHub](#via-github)
+    - [Via npm](#via-npm)
   - [Usage](#usage)
     - [As a Library](#as-a-library)
     - [From the Command Line](#from-the-command-line)
@@ -72,6 +74,8 @@ Hein, J. L. (2017). [_Discrete structures, logic, and computability_](https://ww
 
 Turing Machines does not rely on external dependencies and can be used by cloning the repository.
 
+### Via GitHub
+
 Clone the repo:
 
 ```bash
@@ -96,25 +100,48 @@ Output is available in the `dist/` folder.
 - esm.js - Used for node bundles
 - umd.js - Used for the browser
 
+### Via npm
+
+```bash
+npm i turing-machines
+```
+
 ## Usage
 
 Turing Machines can be used as a library or from the command line.
 
 ### As a Library
 
+If you cloned the repo and wish to use the library in another project first you have to link it via npm link.  
+From the root of cloned turing-machines repo:
+
+```bash
+npm link
+```
+
+Then from the project you wish to use the library in:
+
+```bash
+npm link turing-machines
+```
+
+If you are installing from npm there is no need to link:
+
+Example:
+
 ```ts
 // import the single tape turing machine
-import {singleTapeTM} from '<pathToFolder>/turing-machines.[cjs|esm|umd].js';
+import {singleTM} from 'turing-machines';
 
 // destructure the machine, its runner, the printHistory function, and
 // the pre-included machineGraphs
-const {machine, runner, printHistory, machineGraphs} = singleTapeTM;
+const {machine, runner, printHistory, machineGraphs} = singleTM;
 
 // create a new machine
 const tm = machine({
   input: '11011',
   transitions: machineGraphs.flipTheBits.transitions,
-  startingState: machineGraphs.flipTheBits.startState
+  startingState: machineGraphs.flipTheBits.startingState
 });
 
 // run the machine
@@ -131,7 +158,61 @@ printHistory(result);
 
 ### From the Command Line
 
-Currently only the pre-included machines for copy and pasting binary strings or flipping their bits can be used from the command line.
+Currently only the pre-included machines for copy and pasting binary strings or flipping their bits can be used from the command line. Additionally, this is only supported by cloning the repo and running the index.mjs file or npm start. Below is an example of implementing the CLI utility if you installed turing-machines via npm.
+
+```typescript
+import process from 'process';
+import {singleTM} from 'turing-machines';
+
+if (process?.argv[1]?.includes('<path to this script>')) {
+  const [, , input, graph, ...flags] = process.argv;
+
+  function printUsage() {
+    console.log('Usage: node index.js <input> <graph> [flags]');
+    console.log('Or');
+    console.log('Usage: npm run start <input> <graph>  [--] [flags]\n');
+    console.log('Input: The input string to run on the machine');
+    console.log('Graphs:');
+    console.log('\tcopyAndPaste: Copy and paste the input');
+    console.log('\tflipTheBits: Flip the bits of the input');
+    console.log('Flags:');
+    console.log('\t--history: Print the history of the machine');
+  }
+
+  // get the graph to use
+  const graphToUse = singleTM.machineGraphs[graph] || null;
+
+  if (input) {
+    if (!graphToUse) {
+      console.error(`Graph ${graph} not found!`);
+      printUsage();
+      process.exit(1);
+    }
+
+    const result = singleTM.runner(
+      singleTM.machine({
+        input,
+        transitions: graphToUse.transitions,
+        startingState: graphToUse.startingState
+      })
+    );
+
+    console.log('Input :', input);
+    console.log('Result:', result.tape.join(''));
+    console.log('Steps :', result.history.stateHistory.length.toString());
+
+    // check the flags
+    if (flags.includes('--history')) {
+      console.log('\nHistory:');
+      singleTM.printHistory(result);
+    }
+  } else {
+    console.error('No input provided!\n');
+    printUsage();
+    process.exit(1);
+  }
+}
+```
 
 #### Commands
 
@@ -142,7 +223,7 @@ npm run start <input> <graph>  [--] [--flags]
 
 ```bash
 #from anywhere
-node <path to project folder/index.js> <input> <graph> [--flags]
+node <path to project folder/index.mjs> <input> <graph> [--flags]
 ```
 
 #### Flags
@@ -442,6 +523,7 @@ npm run test
 | ---------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
 | Node                   | JavaScript runtime environment       | [Node.js](https://nodejs.org/en/about)                                                                                         |
 | ECMAScript®/JavaScript | General purpose programming language | [EMCAScript®](https://262.ecma-international.org/14.0/), [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) |
+| Rollup.js              | The JavaScript module bundler        | [Rollup.js](https://rollupjs.org)                                                                                              |
 
 ## Contact
 

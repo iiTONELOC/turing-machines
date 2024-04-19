@@ -1,9 +1,7 @@
 import process from 'process';
-import {singleTapeTM} from './src/turingMachines/index.js';
+import {singleTM} from './dist/turing-machines.umd.js';
 
-export * from './src/turingMachines/index.js';
-
-if (process?.argv[1]?.includes('index.js')) {
+if (process?.argv[1]?.includes('index.mjs')) {
   const [, , input, graph, ...flags] = process.argv;
 
   function printUsage() {
@@ -19,7 +17,7 @@ if (process?.argv[1]?.includes('index.js')) {
   }
 
   // get the graph to use
-  const graphToUse = singleTapeTM.machineGraphs[graph] || null;
+  const graphToUse = singleTM.machineGraphs[graph] || null;
 
   if (input) {
     if (!graphToUse) {
@@ -28,11 +26,11 @@ if (process?.argv[1]?.includes('index.js')) {
       process.exit(1);
     }
 
-    const result = singleTapeTM.runner(
-      singleTapeTM.machine({
+    const result = singleTM.runner(
+      singleTM.machine({
         input,
         transitions: graphToUse.transitions,
-        startingState: graphToUse.startState
+        startingState: graphToUse.startingState
       })
     );
 
@@ -43,7 +41,7 @@ if (process?.argv[1]?.includes('index.js')) {
     // check the flags
     if (flags.includes('--history')) {
       console.log('\nHistory:');
-      singleTapeTM.printHistory(result);
+      singleTM.printHistory(result);
     }
   } else {
     console.error('No input provided!\n');

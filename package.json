@@ -4,8 +4,12 @@
   "main": "dist/turing-machines.cjs.js",
   "module": "dist/turing-machines.esm.js",
   "browser": "dist/turing-machines.umd.js",
-  "type": "module",
-  "types": "./src/turingMachines/singleTape/singleTM.d.ts",
+  "types": "dist/singleTM.d.ts",
+  "homepage": "https://github.com/iitoneloc/turing-machines",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iitoneloc/turing-machines.git"
+  },
   "scripts": {
     "test-dev": "node --test --watch",
     "build": "rollup -c && cp ./src/turingMachines/singleTape/singleTM.d.ts ./dist/singleTM.d.ts",
@@ -13,14 +17,17 @@
     "test": "node --test",
     "pretest": "npm run build",
     "pretest-dev": "npm run build",
-    "start": "node index.js"
+    "start": "node index.mjs"
   },
   "files": [
     "dist"
   ],
   "keywords": [
     "Turing Machine",
-    "finite automata"
+    "finite automata",
+    "automata",
+    "computational theory",
+    "single tape turing machine"
   ],
   "author": "iiTONELOC - Anthony Tropeano",
   "license": "ISC",

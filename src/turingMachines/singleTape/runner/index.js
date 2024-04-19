@@ -1,6 +1,8 @@
 /**
  * @typedef {import('./singleTM').SingleTapeTuringMachine} SingleTapeTuringMachine
+ * @typedef {import('./singleTM').runSingleTapeTM} runSingleTapeTM
  * @typedef {import('./singleTM').Transition} Transition
+ * @typedef {import('./singleTM').printHistory} printHistory
  */
 
 /**
@@ -83,7 +85,7 @@ export function updateState(machine, transition) {
 
 /**
  * Runs the single tape Turing Machine
- *
+ * @type {runSingleTapeTM}
  * @param {SingleTapeTuringMachine} machine - The Turing Machine to run
  * @returns {SingleTapeTuringMachine}
  */
@@ -134,6 +136,13 @@ export function runSingleTapeTM(machine) {
   return currentMachine;
 }
 
+/**
+ * Prints the history of the Turing Machine
+ *
+ * @type {printHistory}
+ * @param {SingleTapeTuringMachine} machine - The Turing Machine to print the history for
+ * @returns {void}
+ */
 export function printHistory(machine) {
   machine.history.stateHistory.forEach((state, index) => {
     const upArrow = '↑';

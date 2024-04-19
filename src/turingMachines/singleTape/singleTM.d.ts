@@ -1,3 +1,5 @@
+import {singleTapeTuringMachine} from './machine';
+
 /**
  * Represents the transitions for a specific state.
  */
@@ -42,6 +44,16 @@ export type MachineHistory = {
 };
 
 /**
+ * Represents the graph of a Turing Machine.
+ */
+export type MachineGraphs = {
+  [machineName: string]: {
+    transitions: StateTransitions;
+    startingState: string;
+  };
+};
+
+/**
  * Represents a Single Tape Turing Machine.
  */
 export type SingleTapeTuringMachine = {
@@ -52,4 +64,36 @@ export type SingleTapeTuringMachine = {
   tape?: string[]; // The tape of the Turing Machine, defaults to an empty array.
   stateTransitions: StateTransitions; // The transitions for the Turing Machine, defaults to an empty object.
   history?: MachineHistory; // The history of the Turing Machine.
+};
+
+export declare function singleTapeTuringMachine({
+  input,
+  transitions,
+  startingTape,
+  startingState,
+  startingTapeHead
+}: {
+  input: string;
+  transitions: StateTransitions;
+  startingTape: string[];
+  startingState: string;
+  startingTapeHead: number;
+}): SingleTapeTuringMachine;
+
+export declare function runSingleTapeTM(machine: SingleTapeTuringMachine): SingleTapeTuringMachine;
+
+export declare function printHistory(forMachine: singleTapeTuringMachine): void;
+
+export type singleTapeTM = {
+  machine: singleTapeTuringMachine;
+  runner: runSingleTapeTM;
+  printHistory: printHistory;
+  machineGraphs: MachineGraphs;
+};
+
+export declare const singleTM = {
+  machine: singleTapeTuringMachine,
+  runner: runSingleTapeTM,
+  printHistory,
+  machineGraphs: MachineGraphs
 };
