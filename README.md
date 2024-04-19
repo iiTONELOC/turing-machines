@@ -246,14 +246,14 @@ copyAndPaste
 #### Example
 
 ```bash
-node TuringMachine/index.js 1101 flipTheBits
+node turing-machines/index.mjs 1101 flipTheBits
 Input : 1101
 Result: 0010
 Steps : 5
 ```
 
 ```bash
-node TuringMachine/index.js 1101 flipTheBits --history
+node turing-machines/index.mjs 1101 flipTheBits --history
 Input : 1101
 Result: 0010
 Steps : 5
