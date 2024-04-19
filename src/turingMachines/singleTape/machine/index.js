@@ -1,6 +1,6 @@
 /**
- * @typedef {import('../singleTM').SingleTapeTuringMachine} SingleTapeTuringMachine
- * @typedef {import('../singleTM').StateTransitions} StateTransitions
+ * @typedef {import('./singleTM').SingleTapeTuringMachine} SingleTapeTuringMachine
+ * @typedef {import('./singleTM').StateTransitions} StateTransitions
  */
 /**
  * Creates a single tape Turing Machine

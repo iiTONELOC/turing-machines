@@ -24,7 +24,13 @@ describe('Single Tape Turing Machine', () => {
   });
 
   it('should have a "tape" property that adjusts itself based on the input', () => {
-    assert.deepStrictEqual(singleTapeTuringMachine({input: '1011'}).tape, ['1', '0', '1', '1', ' ']);
+    assert.deepStrictEqual(singleTapeTuringMachine({input: '1011'}).tape, [
+      '1',
+      '0',
+      '1',
+      '1',
+      ' '
+    ]);
   });
 
   it('should have a "state" property', () => {
@@ -59,11 +65,11 @@ describe('Single Tape Turing Machine', () => {
     assert.strictEqual(singleTapeTuringMachine().hasOwnProperty('stateTransitions'), true);
   });
 
-  it('should have a stateTransitions property that accepts a StateTransition object', () => {
+  it('should have a "stateTransitions" property that accepts a "StateTransition" object', () => {
     assert.strictEqual(singleTapeTuringMachine().hasOwnProperty('stateTransitions'), true);
   });
 
-  it('should have a stateTransitions property that accepts a StateTransition object', () => {
+  it('should have a "stateTransitions" property that accepts a "StateTransition" object', () => {
     const stateTransitions = {
       q0: {
         0: {

@@ -17,4 +17,4 @@ export const singleTapeTM = {
 
 export {singleTapeTuringMachine, runSingleTapeTM, printHistory, copyAndPaste, flipTheBits};
 
-export default () => singleTapeTM;
+export default singleTapeTM;

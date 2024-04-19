@@ -66,7 +66,7 @@ An input is _`accepted`_ by the machine if the machine enters the `Halt` state. 
 
 **References**:
 
-Hein, J. L. (2017). [_Discrete structures, logic, and computability_](https://www.jblearning.com/catalog/productdetails/9781284070408) (4th ed.). Jones & Bartlett Publishers. pp. 833-835
+Hein, J. L. (2017). [_Discrete structures, logic, and computability_](https://www.amazon.com/Discrete-Structures-Logic-Computability-James/dp/1284070409) (4th ed.). Jones & Bartlett Publishers. pp. 833-835
 
 ## Installation
 
@@ -78,6 +78,24 @@ Clone the repo:
 git clone git@github.com:iiTONELOC/turing-machines.git
 ```
 
+Install the dev dependencies. Rollup is used for bundling purposes.
+
+```bash
+npm i
+```
+
+If using with other code use Rollup for bundling.
+
+```bash
+npm run build
+```
+
+Output is available in the `dist/` folder.
+
+- cjs.js - Used for node bundles
+- esm.js - Used for node bundles
+- umd.js - Used for the browser
+
 ## Usage
 
 Turing Machines can be used as a library or from the command line.
@@ -86,7 +104,7 @@ Turing Machines can be used as a library or from the command line.
 
 ```ts
 // import the single tape turing machine
-import {singleTapeTM} from '<pathToFolder>/turing-machines/index.js';
+import {singleTapeTM} from '<pathToFolder>/turing-machines.[cjs|esm|umd].js';
 
 // destructure the machine, its runner, the printHistory function, and
 // the pre-included machineGraphs
@@ -330,83 +348,83 @@ npm run test
 > node --test
 
 ▶ Single Tape Turing Machine
-  ✔ should be a function (0.329625ms)
-  ✔ should return an object (0.129084ms)
-  ✔ should have a "tape" property (0.041625ms)
-  ✔ should have an empty "tape" array (0.230833ms)
-  ✔ should have a "tape" property that can be set to a different value (0.077791ms)
-  ✔ should have a "tape" property that adjusts itself based on the input (0.040625ms)
-  ✔ should have a "state" property (0.096584ms)
-  ✔ should have a "state" property with an initial value of "q0" (0.147583ms)
-  ✔ should have a "startState" property with an initial value of "q0" (0.046625ms)
-  ✔ should have a "startState" property that can be set to a different value (0.245166ms)
-  ✔ should have a "tapeHead" property (0.0515ms)
-  ✔ should have a "tapeHead" property with an initial value of 0 (0.030958ms)
-  ✔ should have a "tapeHead" property that can be set to a different value (0.035541ms)
-  ✔ should have a "stateTransitions" property (0.025292ms)
-  ✔ should have a stateTransitions property that accepts a StateTransition object (0.023167ms)
-  ✔ should have a stateTransitions property that accepts a StateTransition object (0.036ms)
-  ✔ should have an "input" property (0.023333ms)
-  ✔ should have an "input" property with an initial value of an empty string (0.0225ms)
-  ✔ should have an "input" property that can be set to a different value (0.032208ms)
-  ✔ should have an "input" property that correctly places the input at the end of a tape (0.086834ms)
-  ✔ should have a "history" property (0.02275ms)
-  ✔ should have a "history" property with a "stateHistory" property (0.02175ms)
-  ✔ should have a "history" property with a "tapeHistory" property (0.021208ms)
-  ✔ should have a "history" property with a "tapeHeadHistory" property (0.020583ms)
-  ✔ should have a "history" property with a "stateHistory" array that contains the initial state (0.021708ms)
-  ✔ should have a "history" property with an empty "tapeHistory" array (0.021083ms)
-  ✔ should have a "history" property with an empty "tapeHeadHistory" array (0.021417ms)
-▶ Single Tape Turing Machine (4.060583ms)
+  ✔ should be a function (0.329875ms)
+  ✔ should return an object (0.117792ms)
+  ✔ should have a "tape" property (0.037833ms)
+  ✔ should have an empty "tape" array (0.200541ms)
+  ✔ should have a "tape" property that can be set to a different value (0.073416ms)
+  ✔ should have a "tape" property that adjusts itself based on the input (0.036916ms)
+  ✔ should have a "state" property (0.085417ms)
+  ✔ should have a "state" property with an initial value of "q0" (0.136083ms)
+  ✔ should have a "startState" property with an initial value of "q0" (0.046ms)
+  ✔ should have a "startState" property that can be set to a different value (0.231459ms)
+  ✔ should have a "tapeHead" property (0.048334ms)
+  ✔ should have a "tapeHead" property with an initial value of 0 (0.03075ms)
+  ✔ should have a "tapeHead" property that can be set to a different value (0.035375ms)
+  ✔ should have a "stateTransitions" property (0.026291ms)
+  ✔ should have a "stateTransitions" property that accepts a "StateTransition" object (0.025ms)
+  ✔ should have a "stateTransitions" property that accepts a "StateTransition" object (0.033125ms)
+  ✔ should have an "input" property (0.392833ms)
+  ✔ should have an "input" property with an initial value of an empty string (0.052416ms)
+  ✔ should have an "input" property that can be set to a different value (0.039875ms)
+  ✔ should have an "input" property that correctly places the input at the end of a tape (0.110417ms)
+  ✔ should have a "history" property (0.029209ms)
+  ✔ should have a "history" property with a "stateHistory" property (0.025625ms)
+  ✔ should have a "history" property with a "tapeHistory" property (0.024833ms)
+  ✔ should have a "history" property with a "tapeHeadHistory" property (0.024125ms)
+  ✔ should have a "history" property with a "stateHistory" array that contains the initial state (0.0265ms)
+  ✔ should have a "history" property with an empty "tapeHistory" array (0.024667ms)
+  ✔ should have a "history" property with an empty "tapeHeadHistory" array (0.024333ms)
+▶ Single Tape Turing Machine (3.9975ms)
 
 ▶ Copy and Paste
-  ✔ should run the Turing Machine until it reaches a final state (0.567167ms)
-  ✔ should run the Turing Machine until it reaches a reject state (0.064292ms)
-▶ Copy and Paste (1.514417ms)
+  ✔ should run the Turing Machine until it reaches a final state (0.560209ms)
+  ✔ should run the Turing Machine until it reaches a reject state (0.06375ms)
+▶ Copy and Paste (1.517958ms)
 
 ▶ Flip the Bits
-  ✔ should run the Turing Machine until it reaches a final state (0.411041ms)
-  ✔ should run the Turing Machine until it reaches a reject state (0.099625ms)
-▶ Flip the Bits (1.297292ms)
+  ✔ should run the Turing Machine until it reaches a final state (0.463458ms)
+  ✔ should run the Turing Machine until it reaches a reject state (0.114291ms)
+▶ Flip the Bits (1.791792ms)
 
 ▶ get transition
-  ✔ should return the transition object for the current state and input symbol (0.352958ms)
-  ✔ should return undefined if no transition is found (0.101792ms)
-▶ get transition (1.320375ms)
+  ✔ should return the transition object for the current state and input symbol (0.342833ms)
+  ✔ should return undefined if no transition is found (0.105625ms)
+▶ get transition (1.290459ms)
 
 ▶ move tape head
-  ✔ should move the tape head to the right (0.068708ms)
-  ✔ should move the tape head to the left (0.045375ms)
-▶ move tape head (0.196334ms)
+  ✔ should move the tape head to the right (0.075166ms)
+  ✔ should move the tape head to the left (0.0445ms)
+▶ move tape head (0.207666ms)
 
 ▶ write symbol
-  ✔ should write the symbol to the tape (0.077875ms)
-  ✔ should not write the symbol to the tape if the write property is null or undefined (0.154333ms)
-▶ write symbol (0.381417ms)
+  ✔ should write the symbol to the tape (0.073625ms)
+  ✔ should not write the symbol to the tape if the write property is null or undefined (0.155125ms)
+▶ write symbol (0.380791ms)
 
 ▶ get current symbol
-  ✔ should return the current symbol from the tape (0.153417ms)
-  ✔ should return a blank space if the tape head is out of bounds (0.040708ms)
-▶ get current symbol (0.30975ms)
+  ✔ should return the current symbol from the tape (0.14825ms)
+  ✔ should return a blank space if the tape head is out of bounds (0.042458ms)
+▶ get current symbol (0.297208ms)
 
 ▶ update state
-  ✔ should update the state of the Turing Machine (0.11375ms)
-  ✔ should set the state to "reject" if no transition is provided (0.142125ms)
-  ✔ should set the state to "reject" if the transition object does not have a next state (0.049167ms)
-  ✔ should set the state to "reject" if the requested transition does not exist (0.03475ms)
-▶ update state (0.504875ms)
+  ✔ should update the state of the Turing Machine (0.107666ms)
+  ✔ should set the state to "reject" if no transition is provided (0.139667ms)
+  ✔ should set the state to "reject" if the transition object does not have a next state (0.044625ms)
+  ✔ should set the state to "reject" if the requested transition does not exist (0.033208ms)
+▶ update state (0.485541ms)
 
 ▶ run single tape TM
-  ✔ should run the Turing Machine until it reaches a final state (0.123583ms)
-  ✔ should run the Turing Machine until it reaches a reject state (0.117084ms)
-▶ run single tape TM (0.32525ms)
+  ✔ should run the Turing Machine until it reaches a final state (0.146208ms)
+  ✔ should run the Turing Machine until it reaches a reject state (0.124542ms)
+▶ run single tape TM (0.367583ms)
 
 ▶ getInput
-  ✔ should be a function (0.140167ms)
-  ✔ should return a string (2.191167ms)
-  ✔ should return the correct string (1.3565ms)
-  ✔ Should stringify the input (1.729834ms)
-▶ getInput (6.5075ms)
+  ✔ should be a function (0.144292ms)
+  ✔ should return a string (2.170417ms)
+  ✔ should return the correct string (1.32525ms)
+  ✔ Should stringify the input (1.78675ms)
+▶ getInput (6.5335ms)
 
 ℹ tests 49
 ℹ suites 10
@@ -415,7 +433,7 @@ npm run test
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 61.659875
+ℹ duration_ms 58.4741255
 ```
 
 ## Tech Stack

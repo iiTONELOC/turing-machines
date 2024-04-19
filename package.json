@@ -1,15 +1,32 @@
 {
   "name": "turing-machines",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/turing-machines.cjs.js",
+  "module": "dist/turing-machines.esm.js",
+  "browser": "dist/turing-machines.umd.js",
   "type": "module",
+  "types": "./src/turingMachines/singleTape/singleTM.d.ts",
   "scripts": {
-    "test": "node --test",
     "test-dev": "node --test --watch",
+    "build": "rollup -c && cp ./src/turingMachines/singleTape/singleTM.d.ts ./dist/singleTM.d.ts",
+    "dev": "rollup -c -w",
+    "test": "node --test",
+    "pretest": "npm run build",
+    "pretest-dev": "npm run build",
     "start": "node index.js"
   },
-  "keywords": [],
-  "author": "",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "Turing Machine",
+    "finite automata"
+  ],
+  "author": "iiTONELOC - Anthony Tropeano",
   "license": "ISC",
-  "description": ""
+  "description": "Dependency free library for creating and running Single-Tape Turing Machines.",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "rollup": "^4.14.3"
+  }
 }
