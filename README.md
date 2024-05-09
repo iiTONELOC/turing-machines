@@ -1,5 +1,6 @@
 # Turing Machines
 
+## Screenshot
 [![Turing Machine](https://upload.wikimedia.org/wikipedia/commons/b/bb/Turing_machine_1.JPG)](https://upload.wikimedia.org/wikipedia/commons/b/bb/Turing_machine_1.JPG)
 
 _Note._ From _Turing Machine 1_ [Drawing], by W.V. Bailey, 2006, Wikimedia Commons
