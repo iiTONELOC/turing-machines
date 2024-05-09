@@ -1,7 +1,8 @@
 # Turing Machines
 
 ## Screenshot
-[![Turing Machine](https://upload.wikimedia.org/wikipedia/commons/b/bb/Turing_machine_1.JPG)](https://upload.wikimedia.org/wikipedia/commons/b/bb/Turing_machine_1.JPG)
+
+[![Turing Machine](./assets/images/Turing_machine-min.jpeg)](./assets/images/Turing_machine-min.jpeg)
 
 _Note._ From _Turing Machine 1_ [Drawing], by W.V. Bailey, 2006, Wikimedia Commons
 [(https://en.wikipedia.org/wiki/File:Turing_machine_1.JPG)](https://en.wikipedia.org/wiki/File:Turing_machine_1.JPG). CC BY-SA 3.0 DEED
@@ -9,6 +10,7 @@ _Note._ From _Turing Machine 1_ [Drawing], by W.V. Bailey, 2006, Wikimedia Commo
 ## Table of Contents
 
 - [Turing Machines](#turing-machines)
+  - [Screenshot](#screenshot)
   - [Table of Contents](#table-of-contents)
   - [Description](#description)
   - [Installation](#installation)
@@ -132,24 +134,24 @@ Example:
 
 ```ts
 // import the single tape turing machine
-import {singleTM} from 'turing-machines';
+import { singleTM } from "turing-machines";
 
 // destructure the machine, its runner, the printHistory function, and
 // the pre-included machineGraphs
-const {machine, runner, printHistory, machineGraphs} = singleTM;
+const { machine, runner, printHistory, machineGraphs } = singleTM;
 
 // create a new machine
 const tm = machine({
-  input: '11011',
+  input: "11011",
   transitions: machineGraphs.flipTheBits.transitions,
-  startingState: machineGraphs.flipTheBits.startingState
+  startingState: machineGraphs.flipTheBits.startingState,
 });
 
 // run the machine
 const executedMachine = runner(tm);
 
 // get the result as a string
-const result = executedMachine.tape.join('');
+const result = executedMachine.tape.join("");
 
 console.log(result); // 00100
 
@@ -162,22 +164,22 @@ printHistory(result);
 Currently only the pre-included machines for copy and pasting binary strings or flipping their bits can be used from the command line. Additionally, this is only supported by cloning the repo and running the index.mjs file or npm start. Below is an example of implementing the CLI utility if you installed turing-machines via npm.
 
 ```typescript
-import process from 'process';
-import {singleTM} from 'turing-machines';
+import process from "process";
+import { singleTM } from "turing-machines";
 
-if (process?.argv[1]?.includes('<path to this script>')) {
+if (process?.argv[1]?.includes("<path to this script>")) {
   const [, , input, graph, ...flags] = process.argv;
 
   function printUsage() {
-    console.log('Usage: node index.js <input> <graph> [flags]');
-    console.log('Or');
-    console.log('Usage: npm run start <input> <graph>  [--] [flags]\n');
-    console.log('Input: The input string to run on the machine');
-    console.log('Graphs:');
-    console.log('\tcopyAndPaste: Copy and paste the input');
-    console.log('\tflipTheBits: Flip the bits of the input');
-    console.log('Flags:');
-    console.log('\t--history: Print the history of the machine');
+    console.log("Usage: node index.js <input> <graph> [flags]");
+    console.log("Or");
+    console.log("Usage: npm run start <input> <graph>  [--] [flags]\n");
+    console.log("Input: The input string to run on the machine");
+    console.log("Graphs:");
+    console.log("\tcopyAndPaste: Copy and paste the input");
+    console.log("\tflipTheBits: Flip the bits of the input");
+    console.log("Flags:");
+    console.log("\t--history: Print the history of the machine");
   }
 
   // get the graph to use
@@ -194,21 +196,21 @@ if (process?.argv[1]?.includes('<path to this script>')) {
       singleTM.machine({
         input,
         transitions: graphToUse.transitions,
-        startingState: graphToUse.startingState
+        startingState: graphToUse.startingState,
       })
     );
 
-    console.log('Input :', input);
-    console.log('Result:', result.tape.join(''));
-    console.log('Steps :', result.history.stateHistory.length.toString());
+    console.log("Input :", input);
+    console.log("Result:", result.tape.join(""));
+    console.log("Steps :", result.history.stateHistory.length.toString());
 
     // check the flags
-    if (flags.includes('--history')) {
-      console.log('\nHistory:');
+    if (flags.includes("--history")) {
+      console.log("\nHistory:");
       singleTM.printHistory(result);
     }
   } else {
-    console.error('No input provided!\n');
+    console.error("No input provided!\n");
     printUsage();
     process.exit(1);
   }
@@ -321,7 +323,7 @@ interface StateTransitions {
   [machineState: string]: {
     [tapeSymbol: string]: {
       write: string;
-      move: 'L' | 'R' | null;
+      move: "L" | "R" | null;
       nextState: string;
     };
   };
@@ -352,11 +354,11 @@ The corresponding `StateTransitions`:
  */
 const flipTheBits = {
   A: {
-    0: {write: '1', move: 'R', nextState: 'A'},
-    1: {write: '0', move: 'R', nextState: 'A'},
-    ' ': {write: ' ', move: 'L', nextState: 'accept'}
+    0: { write: "1", move: "R", nextState: "A" },
+    1: { write: "0", move: "R", nextState: "A" },
+    " ": { write: " ", move: "L", nextState: "accept" },
   },
-  accept: {}
+  accept: {},
 };
 ```
 
@@ -376,46 +378,46 @@ And the corresponding transitions:
  */
 export const copyAndPaste = {
   A: {
-    0: {write: 'y', move: 'R', nextState: 'B-0'},
-    1: {write: 'x', move: 'R', nextState: 'B-1'},
-    s: {write: ' ', move: 'R', nextState: 'E'}
+    0: { write: "y", move: "R", nextState: "B-0" },
+    1: { write: "x", move: "R", nextState: "B-1" },
+    s: { write: " ", move: "R", nextState: "E" },
   },
-  'B-0': {
-    ' ': {write: 's', move: 'R', nextState: 'C-0'},
-    s: {write: null, move: 'R', nextState: 'C-0'},
-    0: {write: null, move: 'R', nextState: 'B-0'},
-    1: {write: null, move: 'R', nextState: 'B-0'}
+  "B-0": {
+    " ": { write: "s", move: "R", nextState: "C-0" },
+    s: { write: null, move: "R", nextState: "C-0" },
+    0: { write: null, move: "R", nextState: "B-0" },
+    1: { write: null, move: "R", nextState: "B-0" },
   },
-  'C-0': {
-    ' ': {write: '0', move: 'L', nextState: 'D'},
-    0: {write: null, move: 'R', nextState: 'C-0'},
-    1: {write: null, move: 'R', nextState: 'C-0'},
-    s: {write: null, move: 'R', nextState: 'C-0'}
+  "C-0": {
+    " ": { write: "0", move: "L", nextState: "D" },
+    0: { write: null, move: "R", nextState: "C-0" },
+    1: { write: null, move: "R", nextState: "C-0" },
+    s: { write: null, move: "R", nextState: "C-0" },
   },
   D: {
-    x: {write: '1', move: 'R', nextState: 'A'},
-    y: {write: '0', move: 'R', nextState: 'A'},
-    0: {write: null, move: 'L', nextState: 'D'},
-    1: {write: null, move: 'L', nextState: 'D'},
-    s: {write: null, move: 'L', nextState: 'D'}
+    x: { write: "1", move: "R", nextState: "A" },
+    y: { write: "0", move: "R", nextState: "A" },
+    0: { write: null, move: "L", nextState: "D" },
+    1: { write: null, move: "L", nextState: "D" },
+    s: { write: null, move: "L", nextState: "D" },
   },
-  'B-1': {
-    ' ': {write: 's', move: 'R', nextState: 'C-1'},
-    s: {write: null, move: 'R', nextState: 'C-1'},
-    0: {write: null, move: 'R', nextState: 'B-1'},
-    1: {write: null, move: 'R', nextState: 'B-1'}
+  "B-1": {
+    " ": { write: "s", move: "R", nextState: "C-1" },
+    s: { write: null, move: "R", nextState: "C-1" },
+    0: { write: null, move: "R", nextState: "B-1" },
+    1: { write: null, move: "R", nextState: "B-1" },
   },
-  'C-1': {
-    ' ': {write: '1', move: 'L', nextState: 'D'},
-    0: {write: null, move: 'R', nextState: 'C-1'},
-    1: {write: null, move: 'R', nextState: 'C-1'}
+  "C-1": {
+    " ": { write: "1", move: "L", nextState: "D" },
+    0: { write: null, move: "R", nextState: "C-1" },
+    1: { write: null, move: "R", nextState: "C-1" },
   },
   E: {
-    ' ': {write: null, move: null, nextState: 'accept'},
-    0: {write: null, move: 'R', nextState: 'E'},
-    1: {write: null, move: 'R', nextState: 'E'}
+    " ": { write: null, move: null, nextState: "accept" },
+    0: { write: null, move: "R", nextState: "E" },
+    1: { write: null, move: "R", nextState: "E" },
   },
-  accept: {}
+  accept: {},
 };
 ```
 
