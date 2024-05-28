@@ -2,7 +2,7 @@
 
 ## Screenshot
 
-![Turing Machine](./assets/images/Turing_machine-min.jpeg)
+![Turing Machine](./assets/images/Turing_machine.jpeg)
 
 _Note._ Adapted From _Turing Machine 1_ [Drawing], by W.V. Bailey, 2006, Wikimedia Commons
 [(https://en.wikipedia.org/wiki/File:Turing_machine_1.JPG)](https://en.wikipedia.org/wiki/File:Turing_machine_1.JPG). CC BY-SA 3.0 DEED
